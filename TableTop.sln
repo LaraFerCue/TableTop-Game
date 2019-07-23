@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 16
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableTop", "TableTop.csproj", "{9565C5FC-92A2-65A1-C4DB-AA2FF7BFAC2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests.csproj", "{BCB535AA-B678-D978-4E21-CB69D1BFCE41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9565C5FC-92A2-65A1-C4DB-AA2FF7BFAC2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9565C5FC-92A2-65A1-C4DB-AA2FF7BFAC2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9565C5FC-92A2-65A1-C4DB-AA2FF7BFAC2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9565C5FC-92A2-65A1-C4DB-AA2FF7BFAC2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCB535AA-B678-D978-4E21-CB69D1BFCE41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCB535AA-B678-D978-4E21-CB69D1BFCE41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCB535AA-B678-D978-4E21-CB69D1BFCE41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCB535AA-B678-D978-4E21-CB69D1BFCE41}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
