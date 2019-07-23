@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using Assets.Scripts;
 
+
 namespace Tests
 {
     public class TestMovement
@@ -30,11 +31,14 @@ namespace Tests
             GameObject pawn = new GameObject();
             Movement movement = pawn.AddComponent<Movement>();
 
-            movement.Move(new Vector3(1.0f, 0.0f, 4.0f));
+            movement.SetDestination(new Vector3(1.0f, 0.0f, 4.0f));
 
-            Assert.That(pawn.transform.position.x == 1.0f);
-            Assert.That(pawn.transform.position.y == 0.0f);
-            Assert.That(pawn.transform.position.z == 4.0f);
+            Vector3 destination = movement.GetDestination();
+            Assert.That(destination.x == 1.0f);
+            Assert.That(destination.y == 0.0f);
+            Assert.That(destination.z == 4.0f);
+            Assert.That(movement.GetIsMoving());
         }
+
     }
 }
