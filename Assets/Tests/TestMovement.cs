@@ -19,10 +19,11 @@ namespace Tests
 
             movement.Rotate(new Vector3(4.0f, 0.0f, 4.0f));
 
-            Assert.That(pawn.transform.rotation.x == 0.0f);
-            Assert.That(pawn.transform.rotation.y < 0.39f && pawn.transform.rotation.y > 0.38f);
-            Assert.That(pawn.transform.rotation.z == 0.0f);
-            Assert.That(pawn.transform.rotation.w > 0.92f && pawn.transform.rotation.w < 0.93f);
+            Assert.That(movement.Direction.x == 0.0f);
+            Assert.That(movement.Direction.y < 0.39f && movement.Direction.y > 0.38f);
+            Assert.That(movement.Direction.z == 0.0f);
+            Assert.That(movement.Direction.w > 0.92f && movement.Direction.w < 0.93f);
+            Assert.That(movement.IsRotating);
         }
 
         [Test]
@@ -33,11 +34,10 @@ namespace Tests
 
             movement.SetDestination(new Vector3(1.0f, 0.0f, 4.0f));
 
-            Vector3 destination = movement.GetDestination();
-            Assert.That(destination.x == 1.0f);
-            Assert.That(destination.y == 0.0f);
-            Assert.That(destination.z == 4.0f);
-            Assert.That(movement.GetIsMoving());
+            Assert.That(movement.Destination.x == 1.0f);
+            Assert.That(movement.Destination.y == 0.0f);
+            Assert.That(movement.Destination.z == 4.0f);
+            Assert.That(movement.IsMoving);
         }
 
     }
