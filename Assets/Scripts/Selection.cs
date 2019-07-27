@@ -6,6 +6,8 @@ namespace Assets.Scripts {
     public class Selection : MonoBehaviour
     {
         private GameObject selected = null;
+        private Vector3 direction;
+        private Vector3 destination;
 
         private void DeactivateProjectors()
         {
@@ -27,6 +29,8 @@ namespace Assets.Scripts {
 
                 Transform projector = target.Find("Projector");
                 projector.gameObject.SetActive(true);
+                destination = target.position;
+                direction = destination;
             }
             else
             {
@@ -34,25 +38,57 @@ namespace Assets.Scripts {
             }
         }
 
+        public void MoveSelectedPlayer(Vector3 point)
+        {
+            if (selected == null)
+                return;
+
+            Movement movement = selected.GetComponent<Movement>();
+            movement.Destination = point;
+        }
+
+        public void SetLookDirectionToSelectedPlayer(Vector3 point)
+        {
+            if (selected == null)
+                return;
+
+            Movement movement = selected.GetComponent<Movement>();
+            movement.Direction = point;
+        }
+
         // Update is called once per frame
         void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
+                MouseSelection();
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                MouseAction();
+            }
+        }
+        
+        private void MouseAction()
+        {
+            MoveSelectedPlayer(destination);
+            SetLookDirectionToSelectedPlayer(direction);
+        }
 
-                if (Physics.Raycast(ray, out hit))
+        private void MouseSelection()
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.tag == "Player")
                 {
-                    if (hit.transform.tag == "Player")
-                    {
-                        SelectPlayer(hit.transform);
-                    }
-                    else if (hit.transform.tag == "Floor" && selected)
-                    {
-                        Movement movement = selected.GetComponent<Movement>();
-                        movement.Destination = hit.point;
-                    }
+                    SelectPlayer(hit.transform);
+                }
+                else if (hit.transform.tag == "Floor")
+                {
+                    destination = hit.point;
                 }
             }
         }
