@@ -13,7 +13,24 @@ namespace Assets.Scripts {
 
             foreach (GameObject player in players)
             {
-                player.transform.Find("Projector").gameObject.SetActive(false);
+                Transform projector = player.transform.Find("Projector");
+                projector.gameObject.SetActive(false);
+            }
+        }
+
+        public void SelectPlayer(Transform target)
+        {
+            DeactivateProjectors();
+            if (target.gameObject != selected)
+            {
+                selected = target.gameObject;
+
+                Transform projector = target.Find("Projector");
+                projector.gameObject.SetActive(true);
+            }
+            else
+            {
+                selected = null;
             }
         }
 
@@ -29,22 +46,12 @@ namespace Assets.Scripts {
                 {
                     if (hit.transform.tag == "Player")
                     {
-                        DeactivateProjectors();
-                        if (hit.transform.gameObject != selected)
-                        {
-                            selected = hit.transform.gameObject;
-
-                            Transform projector = hit.transform.Find("Projector");
-                            projector.gameObject.SetActive(true);
-                        } else
-                        {
-                            selected = null;
-                        }
+                        SelectPlayer(hit.transform);
                     }
                     else if (hit.transform.tag == "Floor" && selected)
                     {
                         Movement movement = selected.GetComponent<Movement>();
-                        movement.SetDestination(hit.point);
+                        movement.Destination = hit.point;
                     }
                 }
             }
