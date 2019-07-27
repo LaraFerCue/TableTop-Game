@@ -6,73 +6,66 @@ namespace Assets.Scripts {
     public class Movement: MonoBehaviour
     {
         public float speed = 0.0f;
+        public float angularSpeed = 0.0f;
         private Vector3 destination;
-        private Quaternion direction;
+        private Vector3 direction;
         private bool isRotating = false;
         private bool isMoving = false;
-        public bool IsMoving
-        {
-            get
-            {
-                return isMoving;
-            }
-        }
+        public bool IsMoving { get { return isMoving; } }
 
-        public bool IsRotating
-        {
-            get
-            {
-                return isRotating;
-            }
-        }
+        public bool IsRotating { get { return isRotating; } }
 
         public Vector3 Destination
         {
-            get
+            get { return destination; }
+
+            set
             {
-                return destination;
+                this.destination = new Vector3(value.x, transform.position.y, value.z);
+                this.isMoving = true;
             }
         }
 
-        public Quaternion Direction
+        public Vector3 Direction
         {
-            get
+            get { return direction;  }
+            set
             {
-                return direction;
+                this.direction = new Vector3(value.x, transform.position.y, value.z);
+                this.isRotating = true;
             }
         }
-        public void Rotate(Vector3 direction)
-        {
-            this.direction = Quaternion.LookRotation(direction);
-            isRotating = true;
-        }
 
-        public void SetDestination(Vector3 destination)
-        {
-            this.destination = new Vector3(destination.x, transform.position.y, destination.z);
-            isMoving = true;
-            Rotate(destination);
-        }
-
-        private void Update()
+        public void MoveTorwards(float deltaTime)
         {
             if (isMoving)
             {
                 Debug.Log("Moving -> Position: " + transform.position + " destination: " + destination);
-                transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * speed);
+                transform.position = Vector3.Lerp(transform.position, destination, deltaTime * speed);
 
                 if (Vector3.Distance(transform.position, destination) < 0.1f)
                     isMoving = false;
             }
 
+        }
+
+        public void LookTorwards(float deltaTime)
+        {
             if (isRotating)
             {
-                Debug.Log("Rotating -> Rotation: " + transform.rotation + " direction: " + direction);
-                transform.rotation = Quaternion.Lerp(transform.rotation, direction, Time.deltaTime * speed);
+                Vector3 direction = (this.destination - transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
 
-                if (Quaternion.Dot(transform.rotation, direction) > 0.9f)
-                    isRotating = false;
+                Debug.Log("Rotating -> Rotation: " + transform.rotation + " destination: " + lookRotation);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * angularSpeed);
+                isRotating = Quaternion.Angle(transform.rotation, lookRotation) > 5.0f;
             }
+        }
+
+        private void Update()
+        {
+            MoveTorwards(Time.deltaTime);
+            LookTorwards(Time.deltaTime);
         }
     }
 }

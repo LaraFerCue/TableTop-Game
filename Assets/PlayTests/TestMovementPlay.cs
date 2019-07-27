@@ -17,7 +17,7 @@ namespace Tests
             Movement movement = pawn.AddComponent<Movement>();
             movement.speed = 1.0f;
 
-            movement.SetDestination(new Vector3(1.0f, 0.0f, 4.0f));
+            movement.Destination = new Vector3(1.0f, 0.0f, 4.0f);
 
             while (movement.IsMoving)
                 yield return null;
@@ -33,7 +33,6 @@ namespace Tests
             Movement movement = pawn.AddComponent<Movement>();
             movement.speed = 1.0f;
 
-            movement.Rotate(new Vector3(1.0f, 0.0f, 4.0f));
 
             while (movement.IsRotating)
                 yield return null;
