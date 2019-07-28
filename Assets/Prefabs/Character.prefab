@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 3798828297618586088}
   - component: {fileID: 8654862957044692302}
   - component: {fileID: 8298430142246738699}
+  - component: {fileID: 6653470604028105234}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -142,6 +143,22 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6653470604028105234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202872292764557044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 771a6aa45143b684296b8548f4d2cc0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDamage: 1
+  maxDamage: 2
+  targets:
+  - Monster
 --- !u!1 &8900640562971768781
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,6 +173,7 @@ GameObject:
   - component: {fileID: 8082947727939822852}
   - component: {fileID: 1825699819264329271}
   - component: {fileID: 3082568908699995473}
+  - component: {fileID: 327146245613339460}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -268,3 +286,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &327146245613339460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8900640562971768781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea1fedf8844e3440bb734e85a65c342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 10
+  armorClass: 10
