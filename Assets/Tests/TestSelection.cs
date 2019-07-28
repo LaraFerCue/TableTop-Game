@@ -9,18 +9,7 @@ namespace Tests
 {
     public class TestSelection
     {
-        private GameObject CreatePlayer(string name)
-        {
-            GameObject player = new GameObject(name);
-            player.tag = "Player";
-            player.AddComponent<Movement>();
-            GameObject projector = new GameObject("Projector");
-            projector.transform.SetParent(player.transform);
-            projector.name = "Projector";
-            projector.AddComponent<Projector>();
-
-            return player;
-        }
+        
 
         private GameObject GetProjectorFromPlayer(GameObject player)
         {
@@ -34,8 +23,8 @@ namespace Tests
         {
             GameObject gameController = new GameObject("GameController");
             Selection selection = gameController.AddComponent<Selection>();
-            GameObject player1 = CreatePlayer("Player 1");
-            GameObject player2 = CreatePlayer("Player 2");
+            GameObject player1 = TestUtils.CreatePlayer("Player 1");
+            GameObject player2 = TestUtils.CreatePlayer("Player 2");
 
             selection.SelectPlayer(player1.transform);
 
@@ -56,7 +45,7 @@ namespace Tests
         {
             GameObject gameController = new GameObject("GameController");
             Selection selection = gameController.AddComponent<Selection>();
-            GameObject player1 = CreatePlayer("Player1");
+            GameObject player1 = TestUtils.CreatePlayer("Player1");
 
             selection.SelectPlayer(player1.transform);
             selection.MoveSelectedPlayer(new Vector3(1.0f, 0.0f, 4.0f));
@@ -72,7 +61,7 @@ namespace Tests
         {
             GameObject gameController = new GameObject("GameController");
             Selection selection = gameController.AddComponent<Selection>();
-            GameObject player1 = CreatePlayer("Player1");
+            GameObject player1 = TestUtils.CreatePlayer("Player1");
 
             selection.SelectPlayer(player1.transform);
             selection.SetLookDirectionToSelectedPlayer(new Vector3(1.0f, 0.0f, 4.0f));
