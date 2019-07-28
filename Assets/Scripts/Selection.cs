@@ -8,6 +8,7 @@ namespace Assets.Scripts {
         private GameObject selected = null;
         private Vector3 direction;
         private Vector3 destination;
+        private bool setDestinationAndDirection = false;
 
         private void DeactivateProjectors()
         {
@@ -71,8 +72,19 @@ namespace Assets.Scripts {
         
         private void MouseAction()
         {
+            if (!setDestinationAndDirection)
+                return;
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                direction = hit.point;
+            }
             MoveSelectedPlayer(destination);
             SetLookDirectionToSelectedPlayer(direction);
+            setDestinationAndDirection = false;
         }
 
         private void MouseSelection()
@@ -88,6 +100,7 @@ namespace Assets.Scripts {
                 }
                 else if (hit.transform.tag == "Floor")
                 {
+                    setDestinationAndDirection = true;
                     destination = hit.point;
                 }
             }

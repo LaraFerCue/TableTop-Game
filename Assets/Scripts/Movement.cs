@@ -53,7 +53,7 @@ namespace Assets.Scripts {
         {
             if (isRotating)
             {
-                Vector3 direction = (this.destination - transform.position).normalized;
+                Vector3 direction = (this.direction - transform.position).normalized;
                 Quaternion lookRotation = Quaternion.LookRotation(direction);
 
                 Debug.Log("Rotating -> Rotation: " + transform.rotation + " destination: " + lookRotation);
