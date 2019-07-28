@@ -49,6 +49,15 @@ namespace Assets.Scripts {
 
         }
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.tag == "Wall")
+            {
+                Debug.Log("I am hitting a Wall ...");
+                isMoving = false;
+            }
+        }
+
         public void LookTorwards(float deltaTime)
         {
             if (isRotating)
