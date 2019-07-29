@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Scripts {
     public class MeleeWeapon : Weapon
     {
-        public override void Attack(GameObject target)
+        public override void Damage(GameObject target)
         {
             int damage = Random.Range(minDamage, maxDamage);
             Character character = target.GetComponent<Character>();

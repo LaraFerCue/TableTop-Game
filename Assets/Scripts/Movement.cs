@@ -40,7 +40,6 @@ namespace Assets.Scripts {
         {
             if (isMoving)
             {
-                Debug.Log("Moving -> Position: " + transform.position + " destination: " + destination);
                 transform.position = Vector3.Lerp(transform.position, destination, deltaTime * speed);
 
                 if (Vector3.Distance(transform.position, destination) < 0.1f)
@@ -49,12 +48,16 @@ namespace Assets.Scripts {
 
         }
 
+        public void Stop()
+        {
+            isMoving = false;
+        }
+
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.tag == "Wall")
             {
-                Debug.Log("I am hitting a Wall ...");
-                isMoving = false;
+                Stop();
             }
         }
 
@@ -65,7 +68,6 @@ namespace Assets.Scripts {
                 Vector3 direction = (this.direction - transform.position).normalized;
                 Quaternion lookRotation = Quaternion.LookRotation(direction);
 
-                Debug.Log("Rotating -> Rotation: " + transform.rotation + " destination: " + lookRotation);
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * angularSpeed);
                 isRotating = Quaternion.Angle(transform.rotation, lookRotation) > 5.0f;
             }

@@ -21,7 +21,7 @@ namespace Tests
             Character character = player.GetComponent<Character>();
             
             Assert.That(character.HitPoints == 10);
-            weapon.Attack(player);
+            weapon.Damage(player);
             Assert.That(character.HitPoints == 9);
         }
 
@@ -38,7 +38,7 @@ namespace Tests
             Character character = player.GetComponent<Character>();
 
             Assert.That(character.HitPoints == 10);
-            weapon.Attack(player);
+            weapon.Damage(player);
             Assert.That(character.HitPoints < 10 && character.HitPoints >= 0);
         }
     }
