@@ -15,5 +15,19 @@ namespace Assets.Scripts {
                 character.ApplyDamage(damage);
             }
         }
+
+
+        private void OnTriggerEnter(Collider other)
+        {
+            Attack(other);
+            Movement movement = gameObject.GetComponentInParent<Movement>();
+            if (movement)
+                movement.Stop();
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            Attack(other);
+        }
     }
 }
