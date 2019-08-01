@@ -7,17 +7,21 @@ namespace Assets.Scripts
     public class Character : MonoBehaviour
     {
         [SerializeField]
-        private int hitPoints = 10;
+        private int strength, dexterity, constitution, intelligence, wisdom, charisma;
         private int currentHitPoints = 10;
 
         [SerializeField]
         private int armorClass;
 
+        [SerializeField]
+        private int level, hitPointsPerLevel;
+
         public int HitPoints { get { return currentHitPoints; } }
 
         private void Awake()
         {
-            currentHitPoints = hitPoints;
+            armorClass = 10 + dexterity;
+            currentHitPoints = (hitPointsPerLevel + constitution) * level;
         }
 
         public void ApplyDamage(int damage)
