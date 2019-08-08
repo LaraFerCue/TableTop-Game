@@ -101,7 +101,7 @@ namespace Assets.Scripts {
                 else if (hit.transform.tag == "Floor")
                 {
                     setDestinationAndDirection = true;
-                    destination = hit.point;
+                    destination = hit.transform.position;
                 }
             }
         }

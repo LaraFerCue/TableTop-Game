@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2315143616880717564}
   - component: {fileID: 1769836367769105179}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 8298430142246738699}
   - component: {fileID: 6653470604028105234}
   - component: {fileID: 2048330883667606857}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 1825699819264329271}
   - component: {fileID: 3082568908699995473}
   - component: {fileID: 327146245613339460}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,5 +316,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea1fedf8844e3440bb734e85a65c342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 10
+  strength: 0
+  dexterity: 0
+  constitution: 0
+  intelligence: 0
+  wisdom: 0
+  charisma: 0
   armorClass: 10
+  level: 0
+  hitPointsPerLevel: 0
