@@ -48,6 +48,18 @@ namespace Assets.Scripts {
 
         }
 
+        public void LookTorwards(float deltaTime)
+        {
+            if (isRotating)
+            {
+                Vector3 direction = (this.direction - transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * angularSpeed);
+                isRotating = Quaternion.Angle(transform.rotation, lookRotation) > 5.0f;
+            }
+        }
+
         public void Stop()
         {
             isMoving = false;
@@ -61,17 +73,6 @@ namespace Assets.Scripts {
             }
         }
 
-        public void LookTorwards(float deltaTime)
-        {
-            if (isRotating)
-            {
-                Vector3 direction = (this.direction - transform.position).normalized;
-                Quaternion lookRotation = Quaternion.LookRotation(direction);
-
-                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * angularSpeed);
-                isRotating = Quaternion.Angle(transform.rotation, lookRotation) > 5.0f;
-            }
-        }
 
         private void Update()
         {
