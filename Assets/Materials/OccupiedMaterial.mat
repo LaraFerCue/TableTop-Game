@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DirectionMaterial
+  m_Name: OccupiedMaterial
   m_Shader: {fileID: 4800000, guid: 57c498ab4d285224081a8f61bcbb1b82, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -56,11 +56,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadowTex:
-        m_Texture: {fileID: 2800000, guid: e649e1aad14aceb4298149fd98d56326, type: 3}
+        m_Texture: {fileID: 2800000, guid: 08e5f37ed8d551d44b4c3278fe4f0c76, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Attenuation: 1
+    - _Attenuation: 0.13
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -78,5 +78,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.10522418, b: 0, a: 1}
+    - _Color: {r: 1, g: 0.008334476, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

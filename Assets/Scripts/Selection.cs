@@ -61,15 +61,23 @@ namespace Assets.Scripts {
         void Update()
         {
             if (Input.GetMouseButtonDown(0))
-            {
                 MouseSelection();
-            }
+            if (Input.GetMouseButton(0))
+                FloorChecker();
             if (Input.GetMouseButtonUp(0))
-            {
                 MouseAction();
-            }
         }
         
+        private Transform GetObjectUnderCursor()
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+                return hit.transform;
+            return null;
+        }
+
         private void MouseAction()
         {
             if (!setDestinationAndDirection)
@@ -82,27 +90,37 @@ namespace Assets.Scripts {
             {
                 direction = hit.point;
             }
-            MoveSelectedPlayer(destination);
-            SetLookDirectionToSelectedPlayer(direction);
+            //MoveSelectedPlayer(destination);
+            //SetLookDirectionToSelectedPlayer(direction);
             setDestinationAndDirection = false;
+        }
+
+        private void FloorChecker()
+        {
+            Transform hittedObject = GetObjectUnderCursor();
+
+            if (hittedObject != null && hittedObject.tag == "Floor")
+            {
+                setDestinationAndDirection = true;
+                destination = hittedObject.position;
+
+                CellCheck cellCheck = hittedObject.gameObject.GetComponent<CellCheck>();
+                if (cellCheck != null)
+                {
+                    if (cellCheck.IsOccupied())
+                        cellCheck.HighlightOccupied();
+                    else
+                        cellCheck.HighlightNonOccupied();
+                }
+            }
         }
 
         private void MouseSelection()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            Transform hittedObject = GetObjectUnderCursor();
+            if (hittedObject != null && hittedObject.tag == "Player")
             {
-                if (hit.transform.tag == "Player")
-                {
-                    SelectPlayer(hit.transform);
-                }
-                else if (hit.transform.tag == "Floor")
-                {
-                    setDestinationAndDirection = true;
-                    destination = hit.transform.position;
-                }
+                SelectPlayer(hittedObject);
             }
         }
     }
